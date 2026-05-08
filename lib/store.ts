@@ -90,8 +90,8 @@ export const useDraftStore = create<DraftState>((set) => ({
         ? s
         : { objects: s.objects.filter((o) => o.id !== id) },
     ),
-  setRedLabel: (v) => set({ redLabel: v.slice(0, 4) }),
-  setBlueLabel: (v) => set({ blueLabel: v.slice(0, 4) }),
+  setRedLabel: (v) => set({ redLabel: v.slice(0, 8) }),
+  setBlueLabel: (v) => set({ blueLabel: v.slice(0, 8) }),
   commitComparison: () => set({ hasComparison: true }),
   resetDraft: () =>
     set({
