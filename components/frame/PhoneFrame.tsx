@@ -9,13 +9,13 @@ import React from "react";
  */
 export function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-[100svh] w-full bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
+    <div className="min-h-[100dvh] w-full bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
       {/* 外壳容器：桌面浏览器看见硬件边框；窄屏直接铺满 */}
       <div
         className="relative bg-black md:rounded-[54px] md:border-[10px] md:border-black md:shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_0_2px_#2c2c2c_inset] overflow-hidden"
         style={{
           width: "min(100vw, 393px)",
-          height: "min(100svh, 852px)",
+          height: "min(100dvh, 852px)",
         }}
       >
         {/* 屏幕白底 */}
