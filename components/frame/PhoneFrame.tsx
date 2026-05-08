@@ -26,8 +26,6 @@ export function PhoneFrame({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        {/* 灵动岛 */}
-        <DynamicIsland />
 
         {/* Home 指示条 */}
         <div className="pointer-events-none absolute bottom-1.5 left-1/2 -translate-x-1/2 h-[5px] w-[134px] rounded-full bg-black/85" />
