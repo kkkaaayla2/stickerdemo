@@ -13,6 +13,8 @@ interface Props {
   count: number;
   /** 拖拽落下回调，返回 true=命中区域，false=回弹 */
   onDrop: (e: { clientX: number; clientY: number }) => boolean;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 }
 
 /**
@@ -21,7 +23,7 @@ interface Props {
  * - 也允许直接拖拽（更响应）
  * - 拖动 → 整张飞行；松手 → 调用 onDrop 判断落点
  */
-export function TearableSticker({ side, label, count, onDrop }: Props) {
+export function TearableSticker({ side, label, count, onDrop, onDragStart, onDragEnd }: Props) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const [picked, setPicked] = useState(false);
@@ -79,6 +81,7 @@ export function TearableSticker({ side, label, count, onDrop }: Props) {
           onDragStart={() => {
             if (longPressRef.current) clearTimeout(longPressRef.current);
             armPick();
+            onDragStart?.();
           }}
           onDragEnd={(_, info) => {
             const ok = onDrop({
@@ -90,6 +93,7 @@ export function TearableSticker({ side, label, count, onDrop }: Props) {
             x.set(0);
             y.set(0);
             setPicked(false);
+            onDragEnd?.();
           }}
         >
           <Sticker

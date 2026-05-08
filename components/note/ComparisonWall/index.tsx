@@ -22,12 +22,13 @@ export function ComparisonWall() {
   const stickerBoxRef = useRef<HTMLDivElement>(null);
   const [hoverObj, setHoverObj] = useState<string | null>(null);
   const [page, setPage] = useState(0);
+  const [isDraggingSticker, setIsDraggingSticker] = useState(false);
   // 封面图/正文标题用笔记标题（1/3/5/6 联动）
   const coverTitle = wall.noteTitle || wall.question;
 
-  // 拖拽中实时高亮目标格
+  // 只在真正拖着贴纸时才做 hit test，避免普通滑动触发"松开贴上"
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (page !== 1) return; // 只在横评图页才检测
+    if (page !== 1 || !isDraggingSticker) return;
     const id = gridRef.current?.hitTest(e.clientX, e.clientY) ?? null;
     if (id !== hoverObj) setHoverObj(id);
   };
@@ -157,6 +158,8 @@ export function ComparisonWall() {
           blue={myStickers.blue}
           options={wall.options}
           onDropAt={handleDrop}
+          onDragStart={() => setIsDraggingSticker(true)}
+          onDragEnd={() => { setIsDraggingSticker(false); setHoverObj(null); }}
         />
       </div>
     </div>

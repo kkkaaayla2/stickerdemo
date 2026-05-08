@@ -12,6 +12,8 @@ interface Props {
     side: "red" | "blue",
     e: { clientX: number; clientY: number },
   ) => boolean;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 }
 
 /**
@@ -19,7 +21,7 @@ interface Props {
  * 红 × N + 蓝 × N，N = 对象数
  */
 export const StickerBox = forwardRef<HTMLDivElement, Props>(function StickerBox(
-  { red, blue, options, onDropAt },
+  { red, blue, options, onDropAt, onDragStart, onDragEnd },
   ref,
 ) {
   return (
@@ -52,6 +54,8 @@ export const StickerBox = forwardRef<HTMLDivElement, Props>(function StickerBox(
             label={options.red}
             count={red}
             onDrop={(e) => onDropAt("red", e)}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
           />
           <div className="h-12 w-px bg-ink5" />
           <TearableSticker
@@ -59,6 +63,8 @@ export const StickerBox = forwardRef<HTMLDivElement, Props>(function StickerBox(
             label={options.blue}
             count={blue}
             onDrop={(e) => onDropAt("blue", e)}
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
           />
         </div>
       </div>
