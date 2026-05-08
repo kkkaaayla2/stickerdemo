@@ -42,7 +42,7 @@ export function WallStage({
           className="px-2 py-[3px] text-[11px] font-bold text-white rounded-md shrink-0"
           style={{ background: "#FF2442" }}
         >
-          横评墙
+          测评墙
         </span>
         <div className="text-[14px] font-semibold text-ink leading-[20px] truncate">
           {question}

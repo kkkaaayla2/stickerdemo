@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "横评墙 · 小红书 Demo",
-  description: "贴出你的态度 · 横评墙交互 demo",
+  title: "测评墙 · 贴出你的态度",
+  description: "贴出你的态度 · 测评墙交互 demo",
 };
 
 export const viewport: Viewport = {

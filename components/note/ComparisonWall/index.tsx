@@ -118,7 +118,7 @@ export function ComparisonWall() {
       <div className="px-4 h-[32px] flex items-center">
         {page === 0 && (
           <div className="w-full text-[11px] text-ink3 text-center">
-            ← 左滑查看横评墙
+            ← 左滑查看测评墙
           </div>
         )}
         {page === 1 && (

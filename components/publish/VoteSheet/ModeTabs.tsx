@@ -20,7 +20,7 @@ export function ModeTabs({ mode, onChange }: Props) {
         <Tab
           active={mode === "comparison"}
           onClick={() => onChange("comparison")}
-          label="横评模式"
+          label="测评模式"
           isNew
         />
       </div>
