@@ -24,12 +24,15 @@ export interface VoteRecord {
 
 export interface ComparisonWall {
   id: string;
+  /** 笔记标题（封面图 / 正文标题，对应发布页 noteTitle） */
+  noteTitle: string;
+  /** 横评问题（横评图题目卡 / 横评表单） */
   question: string;
   objects: ComparisonObject[];
   options: OptionConfig;
   votes: VoteRecord[];
   participants: number;
-  unlocked: boolean; // 是否已揭晓（消蒙层）
+  unlocked: boolean;
 }
 
 export const DEFAULT_OPTIONS: OptionConfig = { red: "夯", blue: "拉" };

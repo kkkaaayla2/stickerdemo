@@ -180,6 +180,7 @@ export function buildWallFromDraft(): ComparisonWall {
         ];
   return {
     id: newId(),
+    noteTitle: draft.noteTitle.trim() || draft.question || DEFAULT_QUESTION,
     question: draft.question || DEFAULT_QUESTION,
     objects,
     options: {

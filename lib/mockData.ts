@@ -65,8 +65,8 @@ export function makeVotes(
       userId: `u-${i}`,
       objectId: objId,
       side: "red",
-      x: 0.08 + r() * 0.84,
-      y: 0.18 + r() * 0.74,
+      x: 0.22 + r() * 0.56,
+      y: 0.22 + r() * 0.56,
       rotation: -25 + r() * 50,
     });
   }
@@ -76,8 +76,8 @@ export function makeVotes(
       userId: `u-${100 + i}`,
       objectId: objId,
       side: "blue",
-      x: 0.08 + r() * 0.84,
-      y: 0.18 + r() * 0.74,
+      x: 0.22 + r() * 0.56,
+      y: 0.22 + r() * 0.56,
       rotation: -25 + r() * 50,
     });
   }
@@ -106,6 +106,7 @@ export function initialMockWall(): ComparisonWall {
   ];
   return {
     id: "wall-demo",
+    noteTitle: "已落地上海，求锐评新天地餐厅",
     question: "已落地上海，求锐评新天地餐厅",
     objects,
     options: { red: "夯", blue: "拉" },

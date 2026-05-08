@@ -14,11 +14,6 @@ import { ImagePager } from "../ImagePager";
  * - 上半部分：图片轮播（封面 / 横评图）固定 4:3 比例
  * - 下半部分：信息条 + 贴纸盒（始终可见，便于撕拽到第二页的目标格）
  */
-/** 从完整问题里截取最后一个中文逗号/顿号之后的部分用于图片标题 */
-function shortQuestion(q: string) {
-  const m = q.match(/[，,、]\s*(.+)$/);
-  return m ? m[1] : q;
-}
 
 export function ComparisonWall() {
   const { wall, myStickers, highlightVoteId, vote, moveVote, recallVote, unlock } =
@@ -27,7 +22,8 @@ export function ComparisonWall() {
   const stickerBoxRef = useRef<HTMLDivElement>(null);
   const [hoverObj, setHoverObj] = useState<string | null>(null);
   const [page, setPage] = useState(0);
-  const imageTitle = shortQuestion(wall.question);
+  // 封面图/正文标题用笔记标题（1/3/5/6 联动）
+  const coverTitle = wall.noteTitle || wall.question;
 
   // 拖拽中实时高亮目标格
   const handlePointerMove = (e: React.PointerEvent) => {
@@ -50,8 +46,8 @@ export function ComparisonWall() {
     const x = (p.clientX - rect.left) / rect.width;
     const y = (p.clientY - rect.top) / rect.height;
     vote(objId, side, {
-      x: clamp(x, 0.1, 0.9),
-      y: clamp(y, 0.18, 0.82),
+      x: clamp(x, 0.22, 0.78),
+      y: clamp(y, 0.22, 0.78),
       rotation: -18 + Math.random() * 36,
     });
     return true;
@@ -76,8 +72,8 @@ export function ComparisonWall() {
     if (objId) {
       const rect = gridRef.current?.getRect(objId);
       if (!rect) return;
-      const nx = clamp((p.x - rect.left) / rect.width, 0.1, 0.9);
-      const ny = clamp((p.y - rect.top) / rect.height, 0.18, 0.82);
+      const nx = clamp((p.x - rect.left) / rect.width, 0.22, 0.78);
+      const ny = clamp((p.y - rect.top) / rect.height, 0.22, 0.78);
       moveVote(v.id, objId, { x: nx, y: ny });
       return;
     }
@@ -100,10 +96,10 @@ export function ComparisonWall() {
       {/* 图片轮播 */}
       <ImagePager
         pages={[
-          <NoteCover key="cover" question={imageTitle} />,
+          <NoteCover key="cover" question={coverTitle} />,
           <WallStage
             key="stage"
-            question={imageTitle}
+            question={wall.question}
             objects={wall.objects}
             options={wall.options}
             votes={wall.votes}

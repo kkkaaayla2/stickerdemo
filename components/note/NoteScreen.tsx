@@ -38,7 +38,7 @@ export function NoteScreen({ isAuthor }: Props) {
       {/* 中间主体（可垂直滚动）*/}
       <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain pb-[56px] no-scrollbar">
         <ComparisonWall />
-        <NoteBody question={wall.question} />
+        <NoteBody question={wall.noteTitle || wall.question} />
         <CommentsSection />
       </div>
 
