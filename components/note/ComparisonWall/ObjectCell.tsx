@@ -261,31 +261,27 @@ function SelfSticker({
 }) {
   return (
     <div className="relative">
-      {/* 双层金色辉光环（zIndex 明确低于角标） */}
-      <motion.div
+      {/* 双层金色辉光环：纯 CSS 动画，不创建 Framer Motion 合成层 */}
+      <div
         aria-hidden
-        className="absolute inset-0 rounded-[24px] pointer-events-none"
+        className="ring-breathe absolute inset-0 rounded-[24px] pointer-events-none"
         style={{
           zIndex: 1,
           boxShadow:
             "0 0 0 2px #fff, 0 0 0 4px #FFB800, 0 4px 14px rgba(255,184,0,0.55), 0 0 22px rgba(255,184,0,0.35)",
         }}
-        animate={{ opacity: [0.85, 1, 0.85] }}
-        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <Sticker side={side} label={label} size={size} rotation={0} />
 
-      {/* 右上角白底金星徽章（zIndex 高于金环） */}
-      <motion.div
-        className="absolute -top-1 -right-1 w-[16px] h-[16px] rounded-full bg-white flex items-center justify-center pointer-events-none"
+      {/* 右上角金星角标：纯 CSS 动画，z-index 确保在金环之上 */}
+      <div
+        className="badge-pulse absolute -top-1 -right-1 w-[16px] h-[16px] rounded-full bg-white flex items-center justify-center pointer-events-none"
         style={{
-          zIndex: 20,
+          zIndex: 30,
           boxShadow:
             "0 1px 3px rgba(0,0,0,0.18), 0 0 0 1.5px rgba(255,184,0,0.35)",
         }}
-        animate={{ scale: [1, 1.12, 1] }}
-        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
       >
         <span
           style={{
@@ -297,7 +293,7 @@ function SelfSticker({
         >
           ★
         </span>
-      </motion.div>
+      </div>
     </div>
   );
 }

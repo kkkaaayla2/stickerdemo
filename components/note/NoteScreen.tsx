@@ -42,6 +42,14 @@ export function NoteScreen({ isAuthor }: Props) {
         <CommentsSection />
       </div>
 
+      {/* 底部渐变蒙层（盖住贴纸，z 高于拖拽的 200） */}
+      <div
+        className="absolute inset-x-0 bottom-[56px] h-10 pointer-events-none"
+        style={{
+          zIndex: 240,
+          background: "linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%)",
+        }}
+      />
       {/* 底部操作条 */}
       <ActionBar />
     </div>
@@ -93,7 +101,7 @@ function Avatar() {
 
 function ActionBar() {
   return (
-    <div className="absolute inset-x-0 bottom-0 z-30 h-[56px] pb-[6px] px-3 flex items-center gap-2.5 bg-white/95 backdrop-blur border-t border-ink5/60">
+    <div className="absolute inset-x-0 bottom-0 h-[56px] pb-[6px] px-3 flex items-center gap-2.5 bg-white/95 backdrop-blur border-t border-ink5/60" style={{ zIndex: 250 }}>
       <div className="flex-1 h-9 rounded-full bg-ink5/80 px-3 text-[13px] text-ink3 flex items-center">
         说点什么...
       </div>

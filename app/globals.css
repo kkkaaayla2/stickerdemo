@@ -92,6 +92,24 @@ textarea {
   animation: glass-sweep 3.6s ease-in-out infinite;
 }
 
+/* 我投出的贴纸：金色圆环呼吸动画（纯 CSS，避免 Framer Motion 合成层压住角标） */
+@keyframes ring-breathe {
+  0%, 100% { opacity: 0.82; }
+  50%       { opacity: 1;    }
+}
+.ring-breathe {
+  animation: ring-breathe 1.6s ease-in-out infinite;
+}
+
+/* 角标呼吸缩放 */
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.12); }
+}
+.badge-pulse {
+  animation: badge-pulse 1.6s ease-in-out infinite;
+}
+
 /* 隐藏滚动条 */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

@@ -1,14 +1,24 @@
 "use client";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ACtx: typeof AudioContext = (typeof window !== "undefined" &&
+  ((window as any).AudioContext || (window as any).webkitAudioContext)) as typeof AudioContext;
+
 let ctx: AudioContext | null = null;
 
+/** iOS Safari 需要在用户手势内创建并播放一次静音 buffer 才能解锁 */
 function getCtx(): AudioContext | null {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined" || !ACtx) return null;
   try {
     if (!ctx) {
-      ctx = new AudioContext();
+      ctx = new ACtx();
+      // 立即播放一段静音 buffer 解锁 iOS AudioContext
+      const silent = ctx.createBuffer(1, 1, 22050);
+      const src = ctx.createBufferSource();
+      src.buffer = silent;
+      src.connect(ctx.destination);
+      src.start(0);
     }
-    // 移动端自动播放策略：用户手势后恢复
     if (ctx.state === "suspended") {
       ctx.resume().catch(() => {});
     }
