@@ -137,49 +137,54 @@ export function ObjectCell({
         )}
       </AnimatePresence>
 
-      {/* 贴纸堆叠 */}
+      {/* 贴纸堆叠
+          外层 div 负责定位（translate 不被 Framer Motion 覆盖），
+          内层 motion.div 只做 scale/opacity 入场动画 */}
       <AnimatePresence>
         {unlocked &&
           votes.map((v, i) => (
-            <motion.div
+            <div
               key={v.id}
-              initial={
-                v.isMe
-                  ? { scale: 1.4, opacity: 0 }
-                  : { scale: 0.6, opacity: 0 }
-              }
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{
-                duration: 0.32,
-                delay: v.isMe ? 0 : 0.4 + Math.min(i * 0.006, 0.5),
-                type: "spring",
-                damping: 14,
-                stiffness: 280,
-              }}
               style={{
                 position: "absolute",
                 left: `${v.x * 100}%`,
                 top: `${v.y * 100}%`,
-                transform: `translate(-50%, -50%)`,
+                transform: "translate(-50%, -50%)",
                 zIndex: v.isMe ? 50 : 5 + i * 0.01,
               }}
             >
-              {v.isMe ? (
-                <DraggableSelfSticker
-                  vote={v}
-                  label={v.side === "red" ? options.red : options.blue}
-                  size={spanFull ? 30 : 28}
-                  onDragEnd={(p) => onSelfDrag?.(v, p)}
-                />
-              ) : (
-                <Sticker
-                  side={v.side}
-                  label={v.side === "red" ? options.red : options.blue}
-                  size={spanFull ? 28 : 26}
-                  rotation={v.rotation}
-                />
-              )}
-            </motion.div>
+              <motion.div
+                initial={
+                  v.isMe
+                    ? { scale: 1.4, opacity: 0 }
+                    : { scale: 0.6, opacity: 0 }
+                }
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  duration: 0.32,
+                  delay: v.isMe ? 0 : 0.4 + Math.min(i * 0.006, 0.5),
+                  type: "spring",
+                  damping: 14,
+                  stiffness: 280,
+                }}
+              >
+                {v.isMe ? (
+                  <DraggableSelfSticker
+                    vote={v}
+                    label={v.side === "red" ? options.red : options.blue}
+                    size={spanFull ? 30 : 28}
+                    onDragEnd={(p) => onSelfDrag?.(v, p)}
+                  />
+                ) : (
+                  <Sticker
+                    side={v.side}
+                    label={v.side === "red" ? options.red : options.blue}
+                    size={spanFull ? 28 : 26}
+                    rotation={v.rotation}
+                  />
+                )}
+              </motion.div>
+            </div>
           ))}
       </AnimatePresence>
 
