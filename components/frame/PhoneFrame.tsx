@@ -20,15 +20,13 @@ export function PhoneFrame({ children }: { children: React.ReactNode }) {
       >
         {/* 屏幕白底 */}
         <div className="absolute inset-0 bg-white">
-          {/* 状态栏 */}
-          <StatusBar />
-          {/* 内容区（顶部预留状态栏空间） */}
+          {/* 内容区（顶部预留灵动岛空间） */}
           <div className="absolute inset-x-0 top-0 bottom-0 pt-[44px]">
             {children}
           </div>
         </div>
 
-        {/* 灵动岛（覆盖在状态栏之上） */}
+        {/* 灵动岛 */}
         <DynamicIsland />
 
         {/* Home 指示条 */}

@@ -262,11 +262,12 @@ function SelfSticker({
 }) {
   return (
     <div className="relative">
-      {/* 双层金色辉光环 */}
+      {/* 双层金色辉光环（zIndex 明确低于角标） */}
       <motion.div
         aria-hidden
         className="absolute inset-0 rounded-[24px] pointer-events-none"
         style={{
+          zIndex: 1,
           boxShadow:
             "0 0 0 2px #fff, 0 0 0 4px #FFB800, 0 4px 14px rgba(255,184,0,0.55), 0 0 22px rgba(255,184,0,0.35)",
         }}
@@ -276,10 +277,11 @@ function SelfSticker({
 
       <Sticker side={side} label={label} size={size} rotation={0} />
 
-      {/* 右上角白底金星徽章 */}
+      {/* 右上角白底金星徽章（zIndex 高于金环） */}
       <motion.div
-        className="absolute -top-1 -right-1 z-10 w-[16px] h-[16px] rounded-full bg-white flex items-center justify-center pointer-events-none"
+        className="absolute -top-1 -right-1 w-[16px] h-[16px] rounded-full bg-white flex items-center justify-center pointer-events-none"
         style={{
+          zIndex: 20,
           boxShadow:
             "0 1px 3px rgba(0,0,0,0.18), 0 0 0 1.5px rgba(255,184,0,0.35)",
         }}
