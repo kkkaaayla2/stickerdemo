@@ -29,7 +29,7 @@ export function ComparisonThumb() {
               key={obj.id}
               className="bg-coverMint/70 rounded-[3px] flex items-center justify-center text-[6.5px] text-ink/80 font-medium"
               style={{
-                gridColumn: cell.colSpan === 2 ? "1 / span 2" : undefined,
+                gridColumn: cell.colStart ? `${cell.colStart} / span 2` : undefined,
                 aspectRatio: "1.4 / 1",
               }}
             >
