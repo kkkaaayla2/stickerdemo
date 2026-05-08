@@ -64,7 +64,7 @@ const blankObjects = (): ComparisonObject[] => [
 export const DEFAULT_QUESTION = "已落地上海，求锐评新天地餐厅";
 
 export const useDraftStore = create<DraftState>((set) => ({
-  noteTitle: "已落地上海，求锐评静安寺餐厅",
+  noteTitle: "已落地上海，求锐评新天地餐厅",
   question: DEFAULT_QUESTION,
   objects: blankObjects(),
   redLabel: "",

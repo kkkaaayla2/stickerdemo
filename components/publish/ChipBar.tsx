@@ -29,7 +29,7 @@ export function ChipBar({ onClickVote }: Props) {
           <At className="text-ink2" />
           <span>用户</span>
         </Chip>
-        <Chip onClick={onClickVote} active={hasComparison}>
+        <Chip onClick={onClickVote} active={hasComparison} showDot>
           <VoteIcon className="text-ink2" />
           <span>投票</span>
         </Chip>
@@ -42,22 +42,29 @@ function Chip({
   children,
   onClick,
   active,
+  showDot,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   active?: boolean;
+  showDot?: boolean;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={[
-        "flex items-center gap-1 px-3 h-8 rounded-full text-[13px]",
-        active
-          ? "bg-xhsRedLight text-xhsRed"
-          : "bg-ink5 text-ink2 active:bg-ink5/70",
-      ].join(" ")}
-    >
-      {children}
-    </button>
+    <div className="relative inline-flex">
+      <button
+        onClick={onClick}
+        className={[
+          "flex items-center gap-1 px-3 h-8 rounded-full text-[13px]",
+          active
+            ? "bg-xhsRedLight text-xhsRed"
+            : "bg-ink5 text-ink2 active:bg-ink5/70",
+        ].join(" ")}
+      >
+        {children}
+      </button>
+      {showDot && !active && (
+        <span className="absolute top-[5px] right-[5px] w-[8px] h-[8px] rounded-full bg-[#FF2442] border-[1.5px] border-white -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      )}
+    </div>
   );
 }

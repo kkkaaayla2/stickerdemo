@@ -5,6 +5,7 @@ import { motion, useMotionValue } from "framer-motion";
 import { Sticker } from "./Sticker";
 import { OptionSide } from "@/lib/types";
 import { tap, tear, stick } from "@/lib/haptics";
+import { soundTear, soundStick } from "@/lib/sounds";
 
 interface Props {
   side: OptionSide;
@@ -30,6 +31,7 @@ export function TearableSticker({ side, label, count, onDrop }: Props) {
     if (picked) return;
     setPicked(true);
     tear();
+    soundTear();
   };
 
   return (
@@ -83,7 +85,7 @@ export function TearableSticker({ side, label, count, onDrop }: Props) {
               clientX: info.point.x,
               clientY: info.point.y,
             });
-            if (ok) stick();
+            if (ok) { stick(); soundStick(); }
             else tap(10);
             x.set(0);
             y.set(0);

@@ -43,11 +43,14 @@ export const BASE_VOTES: Record<number, Array<[number, number]>> = {
 export const FIXED_PARTICIPANTS = 87;
 
 // 伪随机数（基于字符串 seed，保证每次渲染位置一致）
+// 注意：使用 ((x % M) + M) % M 保证结果始终为正，避免 JS 整数溢出导致负值
 const seed = (s: string) => {
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  // 归一化到 [0, 233279]，防止负初始值
+  h = ((h % 233280) + 233280) % 233280;
   return () => {
-    h = (h * 9301 + 49297) % 233280;
+    h = ((h * 9301 + 49297) % 233280 + 233280) % 233280;
     return h / 233280;
   };
 };
