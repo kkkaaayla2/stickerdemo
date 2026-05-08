@@ -20,8 +20,8 @@ export function PhoneFrame({ children }: { children: React.ReactNode }) {
       >
         {/* 屏幕白底 */}
         <div className="absolute inset-0 bg-white">
-          {/* 内容区（顶部预留灵动岛空间） */}
-          <div className="absolute inset-x-0 top-0 bottom-0 pt-[44px]">
+          {/* 内容区 */}
+          <div className="absolute inset-0">
             {children}
           </div>
         </div>
