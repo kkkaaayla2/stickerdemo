@@ -40,12 +40,12 @@ export function PublishScreen() {
   return (
     <div className="relative h-full w-full bg-white text-ink overflow-hidden">
       {/* 顶部返回 */}
-      <button className="absolute top-3 left-3 p-2 z-10 text-ink">
+      <button className="absolute top-8 left-3 p-2 z-10 text-ink">
         <ChevronLeft />
       </button>
 
       <div className="h-full overflow-y-auto pb-[calc(env(safe-area-inset-bottom)+96px)] no-scrollbar pt-2">
-        <div className="h-7" />
+        <div className="h-14" />
         <ImageStrip />
 
         {/* 标题与正文 */}
