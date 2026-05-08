@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #1a1a1a;
+  font-family:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif,
+    system-ui, sans-serif;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* iOS-like 阻尼滑动 */
+.scroll-natural {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* 禁止页面拖动产生的橡皮筋外滚 */
+.no-bounce {
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+/* 锯齿撕痕（贴纸顶部） */
+.tear-edge-top {
+  --c: transparent;
+  -webkit-mask:
+    radial-gradient(3px 4px at 50% 0%, var(--c) 98%, #000 100%) 0 0 / 8px 6px
+      repeat-x,
+    linear-gradient(#000 0 0) 0 6px / 100% calc(100% - 6px) no-repeat;
+  mask:
+    radial-gradient(3px 4px at 50% 0%, var(--c) 98%, #000 100%) 0 0 / 8px 6px
+      repeat-x,
+    linear-gradient(#000 0 0) 0 6px / 100% calc(100% - 6px) no-repeat;
+}
+
+/* 圆形贴纸（夯/拉用） - 模拟纸质纤维感 */
+.sticker-paper {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1.5px),
+    radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1.5px);
+  background-size:
+    7px 7px,
+    11px 11px;
+  background-position:
+    0 0,
+    3px 3px;
+}
+
+/* 蒙层闪光扫光 */
+.mask-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  animation: sweep 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 磨砂玻璃格子上的斜向扫光 */
+@keyframes glass-sweep {
+  0%   { transform: translateX(-160%) skewX(-18deg); }
+  100% { transform: translateX(260%)  skewX(-18deg); }
+}
+.glass-sweep {
+  animation: glass-sweep 3.6s ease-in-out infinite;
+}
+
+/* 隐藏滚动条 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
