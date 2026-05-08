@@ -128,7 +128,6 @@ export function ObjectCell({
                 textShadow:
                   "0 1px 3px rgba(255,255,255,0.7), 0 0 12px rgba(46,123,92,0.25)",
                 letterSpacing: "0.02em",
-                filter: "blur(0.3px)",
               }}
             >
               {obj.name}

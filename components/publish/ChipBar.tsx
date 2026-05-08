@@ -8,7 +8,8 @@ interface Props {
 }
 
 export function ChipBar({ onClickVote }: Props) {
-  const { hasComparison } = useDraftStore();
+  const { hasComparison, objects } = useDraftStore();
+  const filledCount = objects.filter((o) => o.name.trim().length > 0).length;
   return (
     <div className="px-4">
       {hasComparison && (
@@ -16,7 +17,7 @@ export function ChipBar({ onClickVote }: Props) {
           onClick={onClickVote}
           className="mb-2 flex items-center gap-1 px-3 h-7 rounded-full bg-ink5 text-[12.5px] text-ink2"
         >
-          <span>投票 · 2个选项</span>
+          <span>投票 · {filledCount}个对象</span>
           <Pencil className="text-ink3" />
         </button>
       )}
