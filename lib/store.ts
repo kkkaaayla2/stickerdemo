@@ -75,7 +75,7 @@ export const useDraftStore = create<DraftState>((set) => ({
   setObjectName: (id, name) =>
     set((s) => ({
       objects: s.objects.map((o) =>
-        o.id === id ? { ...o, name: name.slice(0, 8) } : o,
+        o.id === id ? { ...o, name: name.slice(0, 16) } : o,
       ),
     })),
   addObject: () =>
