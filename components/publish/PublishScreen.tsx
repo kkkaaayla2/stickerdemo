@@ -39,13 +39,20 @@ export function PublishScreen() {
 
   return (
     <div className="relative h-full w-full bg-white text-ink overflow-hidden">
-      {/* 顶部返回 */}
-      <button className="absolute top-8 left-3 p-2 z-10 text-ink">
+      {/* 顶部固定栏：渐变蒙层 + 返回键，滚动时盖住下方内容 */}
+      <div
+        className="absolute inset-x-0 top-0 z-20 h-12 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 60%, rgba(255,255,255,0) 100%)",
+        }}
+      />
+      <button className="absolute top-2 left-2 p-2 z-30 text-ink pointer-events-auto">
         <ChevronLeft />
       </button>
 
-      <div className="h-full overflow-y-auto pb-[calc(env(safe-area-inset-bottom)+96px)] no-scrollbar pt-2">
-        <div className="h-14" />
+      <div className="h-full overflow-y-auto pb-[calc(env(safe-area-inset-bottom)+96px)] no-scrollbar">
+        <div className="h-12" />
         <ImageStrip />
 
         {/* 标题与正文 */}

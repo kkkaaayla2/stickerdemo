@@ -48,12 +48,12 @@ export function ComparisonForm() {
                 <input
                   value={o.name}
                   onChange={(e) => setObjectName(o.id, e.target.value)}
-                  maxLength={8}
-                  placeholder={`对象 ${i + 1}（≤8字）`}
+                  maxLength={16}
+                  placeholder={`对象 ${i + 1}（≤16字）`}
                   className="flex-1 h-10 rounded-md bg-ink5/60 px-3 text-[14px] placeholder:text-ink3 outline-none"
                 />
-                <span className="text-[11px] text-ink4 w-7 text-right tabular-nums">
-                  {o.name.length}/8
+                <span className="text-[11px] text-ink4 w-9 text-right tabular-nums">
+                  {o.name.length}/16
                 </span>
                 {objects.length > 2 && (
                   <button
@@ -125,9 +125,9 @@ function LabelInput({
       />
       <input
         value={value}
-        onChange={(e) => onChange(e.target.value.slice(0, 4))}
+        onChange={(e) => onChange(e.target.value.slice(0, 8))}
         placeholder={placeholder}
-        maxLength={4}
+        maxLength={8}
         className="flex-1 h-10 rounded-md bg-ink5/60 px-3 text-[14px] placeholder:text-ink3 outline-none"
       />
     </div>
